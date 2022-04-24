@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+	<persistence-unit name="sistemadegerenciamento-PU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider> -->
+
+		<class>br.edu.ifpb.mt.dac.entities.User</class>
+
+		<properties>
+		
+			<!-- Database MySQL-->
+			 
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sys?useSSL=false&amp;serverTimezone=GMT-3" />
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="ifpb" />
+		
+		
+			<!-- HIBERNATE -->
+			
+			<!-- Configuração Hibernate -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.use_sql_comments" value="true" />
+			<!-- /Configuração Hibernate -->
+			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect" />
+			<property name="hibernate.default_schema" value="public" />
+			<!-- /Configuração Hibernate SGBD PostgreSQL -->
+				
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57InnoDBDialect" />
+			<property name="hibernate.default_catalog" value="sys" />
+			
+		
+			<!-- /Configuração do Pool de conexões Hibernate -->
+			
+			<!-- /HIBERNATE -->
+
+			<!-- ECLIPSELINK -->
+
+			<!-- Configuração EclipseLink -->
+			<property name="eclipselink.logging.level.sql" value="FINE"/>
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables"/>
+			<!-- /Configuração EclipseLink -->
+			
+			<!-- Configuração do Pool de conexões EclipseLink -->
+			<!-- Documentação: http://www.eclipse.org/eclipselink/documentation/2.6/jpa/extensions/persistenceproperties_ref.htm#connectionpool -->
+			<!-- DICA: checar conexões ativas no PostgreSQL: SELECT * FROM pg_stat_activity; -->
+			<!-- DICA: checar conexões ativas no MySQL: show processlist; -->
+			<!-- Why use connection pooling: https://stackoverflow.com/a/16108276/4023351 -->
+			<property name="eclipselink.connection-pool.initial" value="5"/>
+			<property name="eclipselink.connection-pool.min" value="5"/>
+			<property name="eclipselink.connection-pool.max" value="20"/>
+			<property name="eclipselink.connection-pool.wait" value="3000"/>
+			<!-- /Configuração do Pool de conexões EclipseLink -->
+			
+			<!-- /ECLIPSELINK -->
+		</properties>
+	</persistence-unit>
+</persistence>
